@@ -6,6 +6,7 @@ const cart = [];
 function addToCart (product){
     product.quantity = 1;
     cart.push(product);
+
 }
 
 function addSameProduct (product){
@@ -17,6 +18,9 @@ function addSameProduct (product){
     }
     
 }
+
+
+export { addToCart }
 
 
 
