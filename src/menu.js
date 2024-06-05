@@ -15,16 +15,21 @@ for (let index = 0; index < filters.length; index++) {
 // Obtén una referencia a los botones filtradores
 const filterButtons = document.querySelectorAll(".filter");
 
-// Agrega un evento de clic a cada botón
 filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const category = button.innerHTML.toLowerCase();
-    const filteredProducts = products.filter(
-      (product) => product.category === category
-    );
-    console.log(filteredProducts);
+    if (category === "todos") {
+        console.log(products);
+    }else{
+        const filteredProducts = products.filter(
+          (product) => product.category === category
+        );
+        console.log(filteredProducts);
+    }
   });
 });
+
+
 
 //DEBE imprimir en pantalla los productos, con su Título, descripción y precio en € y botón de añadir.
 
