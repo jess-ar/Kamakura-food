@@ -1,6 +1,7 @@
 //DEBE imprimir en pantalla la información de filtros.
 
 import { filters, products } from "../assets/data/data.js";
+import { filterProducts } from "./searcher.js";
 
 let filterContainer = document.querySelector(".filters-container");
 
@@ -15,20 +16,7 @@ for (let index = 0; index < filters.length; index++) {
 // Obtén una referencia a los botones filtradores
 const filterButtons = document.querySelectorAll(".filter");
 
-filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const category = button.innerHTML.toLowerCase();
-    if (category === "todos") {
-        console.log(products);
-    }else{
-        const filteredProducts = products.filter(
-          (product) => product.category === category
-        );
-        console.log(filteredProducts);
-    }
-  });
-});
-
+filterProducts(filterButtons, products);
 
 
 //DEBE imprimir en pantalla los productos, con su Título, descripción y precio en € y botón de añadir.
