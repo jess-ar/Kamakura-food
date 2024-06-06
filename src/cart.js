@@ -115,4 +115,15 @@ console.log(cart)
 }
 
 
-export { addToCart }
+//SHOW-RECEIPT
+function getCartItems() { //con esto obtengo los articulos del carrito
+    return cart;
+}
+
+function getCartTotal() { //con esto tengo el total del carrito
+    return cart.reduce((total, product) => total + product.price * product.quantity, 0);
+}
+
+export { addToCart, getCartItems, getCartTotal }; //AÑADIDO  getCartItems, getCartTotal
+
+
