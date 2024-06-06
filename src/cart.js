@@ -1,58 +1,5 @@
 
 
-let checkoutIds = [ {
-    id: 2,
-    name: 'Shogun roll',
-    description: 'Rollo de 8 piezas con espárrago frito, cangrejo y aguacate, albacora picante con salsa de soya y mostaza.',
-    price: 8.25,
-    category: "sushi"
-},
-{
-    id: 3,
-    name: 'Paitan Ramen',
-    description: 'Paitan significa sopa blanca en japonés, cremoso y aterciopelado a base de verduras y pollo, cocido según la tradición.',
-    price: 12.00,
-    category: "ramen"
-}]
-//Verificar si el product ya está en checkoutIds
-function addProductIdToCheckout (product) {
-    if (!checkoutIds.some(item=>item.id=== product.id)){
-      checkoutIds.push(product)
-    }
-}
-// Función para obtener array de precios
-function getallPrices(checkoutIds) {
-
-     const prices = checkoutIds.map(product=>product.price)
-    return prices 
-}
-// Función para aumentar la cantidad del carrito
-
-let increaseButton = document.getElementById('increase');
-let decreaseButton = document.getElementById('decrease');
-let quantityText = document.querySelector('.quantity');
-let inicio= 0;
-
-increaseButton.addEventListener('click', function() {
-    // Incrementa la cantidad
-    let quantity = parseInt(quantityText.textContent);
-    quantity++;
-    quantityText.textContent = quantity;
-});
-
-
-decreaseButton.addEventListener('click', function() {
-    // Disminuir la cantidad
-    if (quialityText= null ){ /* "use strict */
-    }else {
-    let quantity = parseInt(quantityText.textContent)
-    quantity--;
-    quantityText.textContent = quantity;
-    }
-});
-
-
-
 const cart = [];
 
 function addToCart(product) {
@@ -61,6 +8,7 @@ function addToCart(product) {
         increaseQuantity(existingProduct);
     } else {
         product.quantity = 1;
+        product.subtotal= product.quantity* product.price
         cart.push(product);
     }
     displayCart();
@@ -69,15 +17,21 @@ function addToCart(product) {
 function increaseQuantity(product) {
     product.quantity++;
     updateDisplayQuantity(product);
+  
+
 }
 
 function decreaseQuantity(product) {
     if (product.quantity > 1) {
         product.quantity--;
         updateDisplayQuantity(product);
+   
+
     } else {
         removeProduct(product);
+     
     }
+    
 }
 
 function updateDisplayQuantity(product) {
@@ -105,7 +59,7 @@ function displayCart() {
             <button class="close-button" id="close-${product.id}"><img src="./assets/img/close.svg" alt="close"></button>
             <div class="text-container">
                 <h3>${product.name}</h3>
-                <h5>${product.price} €</h5>
+                <h5 id ="price-${product.id}">${(product.subtotal).toFixed(2)} €</h5>
             </div>
             <div class="quantity-container">
                 <button id='increase-${product.id}'>+</button>
@@ -117,13 +71,47 @@ function displayCart() {
         const decreaseButton = cartContainer.querySelector(`#decrease-${product.id}`);
         const closeButton = cartContainer.querySelector(`#close-${product.id}`);
 
-        increaseButton.addEventListener('click', () => increaseQuantity(product));
-        decreaseButton.addEventListener('click', () => decreaseQuantity(product));
+        increaseButton.addEventListener('click', () =>{increaseQuantity(product)
+            updateSubtotal(product)
+            
+
+        });
+        decreaseButton.addEventListener('click', () => {decreaseQuantity(product)
+            updateSubtotal(product)
+       
+
+    });
         closeButton.addEventListener('click', () => removeProduct(product));
 
 
         cartProducts.appendChild(cartContainer);
     });
+    cartTotal()
+}
+
+function updateSubtotal(product){
+    
+const subtotal = product.price* product.quantity
+const subtotalElement = document.getElementById(`price-${product.id}`)
+
+
+if (subtotalElement){
+subtotalElement.innerHTML = subtotal.toFixed(2)
+}
+product.subtotal= subtotal
+console.log(product.subtotal)
+cartTotal()
+} 
+
+function cartTotal(){
+const total  = cart.reduce((total, product) => total + product.subtotal, 0);
+
+const cartTotal = document.getElementById("cart-total");
+if (cartTotal){
+    cartTotal.innerHTML= total
+}
+console.log(cart)
+
 }
 
 

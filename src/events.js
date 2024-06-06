@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
             addToCart(product);
         })
     });
-
+   
 
 
     // const plusButton = document.querySelector("#quantity > button:first-child");
