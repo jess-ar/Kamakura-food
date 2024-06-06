@@ -55,6 +55,8 @@ const closeReceiptButton = document.getElementById('close-receipt'); // Obtiene 
 closeReceiptButton.addEventListener('click', function () {
     const cartProducts = document.getElementById('cart-products'); // Obtiene el contenedor de los productos del carrito
     cartProducts.style.display = 'block'; // Muestra los productos del carrito nuevamente
+    const receiptContainer = document.getElementById('receipt-container');
+    receiptContainer.style.display = 'none'; // Hide the receipt
     closeReceipt(); // Cierra el recibo
 });
 
