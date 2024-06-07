@@ -3,6 +3,8 @@ import { addToCart } from './cart.js';
 import { displayCart } from './cartUI.js';
 import { showReceipt } from './receipt.js';
 import { displayMenu } from './menu.js';
+import { displayAlert } from './alert.js';
+
 
 function setupCartButton() {
     const cartButton = document.getElementById('cart');
@@ -72,3 +74,5 @@ setUpCheckoutButton();
 displayCart();
 closeReceipt();
 
+const payButton = document.querySelector('#pay-button')
+payButton.addEventListener('click',displayAlert)
