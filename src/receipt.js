@@ -1,44 +1,48 @@
-import { displayAlert } from './alert.js';
-import { getCartItems, getCartTotal } from './cart.js';
+import { cart, cartTotal } from './cart.js';
 
 
-
-// Función para mostrar el recibo
 function showReceipt() {
     const receiptContainer = document.getElementById('receipt-container');
-    const receiptProductsContainer = document.getElementById('receipt-product');
-    const receiptTotal = document.getElementById('receipt-total');
+    const totalElement = document.getElementById("receipt-total");
+    
+    clearReceipt()
 
-    // Obtiene los artículos del carrito
-    const cartItems = getCartItems();
-    receiptProductsContainer.innerHTML = ''; // Limpia los artículos anteriores del recibo
-
-     // Recorre cada producto en el carrito
-    cartItems.forEach(product => {
-        const productElement = document.createElement('div');
-        productElement.classList.add('receipt-product');
-        productElement.innerHTML = `
+    if (cart.length === 0) {
+        const messageElem = document.createElement('h3');
+        messageElem.innerHTML = `<h3>Aun no has escogido tu orden</h3>`;
+        
+        receiptContainer.insertBefore(messageElem, totalElement);
+    } else {
+        cart.forEach(product => {
+            const productElement = document.createElement('div');
+            productElement.classList.add('receipt-product');
+            productElement.id = 'receipt-product';
+            productElement.innerHTML = `
             <h3>${product.name}</h3>
             <div class="receipt-price">
                 <p>Cantidad: ${product.quantity}</p>
                 <h5>Subtotal: ${(product.price * product.quantity).toFixed(2)} €</h5>
-            </div>`;
-        // Añade el producto al contenedor del recibo
-        receiptProductsContainer.appendChild(productElement);
-    });
+            </div> `;
 
-    
-    receiptTotal.innerHTML = `Total: ${getCartTotal().toFixed(2)} €`;  // Actualiza el total del recibo
-    receiptContainer.style.display = 'flex';  // Muestra el contenedor del recibo
+            receiptContainer.insertBefore(productElement, totalElement);
+        });
+    }
+
+    updateReceiptTotal(totalElement);
+
+}
+
+function updateReceiptTotal(totalElement) {
+    const receiptTotal = cartTotal();
+    totalElement.innerHTML = `Total: ${receiptTotal.toFixed(2)} €`;
+}
+
+function clearReceipt(){
+    let productElement = document.getElementById('receipt-product');
+    productElement.innerHTML = '';
+
 }
 
 
-// Función para cerrar el recibo
-function closeReceipt() {
-    const receiptContainer = document.getElementById('receipt-container');
-    receiptContainer.style.display = 'none';  // Oculta el contenedor del recibo
-}
 
-
-
-export { showReceipt, closeReceipt };
+export { showReceipt };
