@@ -65,6 +65,11 @@ function toggleDisplay(element) {
     }
 }
 
+function endPayment() {
+    const payButton = document.querySelector('#pay-button')
+    payButton.addEventListener('click', displayAlert)
+}
+
 
 
 displayMenu(products);
@@ -73,6 +78,6 @@ setupAddToCartButtons();
 setUpCheckoutButton();
 displayCart();
 closeReceipt();
+endPayment();
 
-const payButton = document.querySelector('#pay-button')
-payButton.addEventListener('click',displayAlert)
+
