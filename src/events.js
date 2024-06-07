@@ -66,8 +66,8 @@ function toggleDisplay(element) {
 }
 
 function endPayment() {
-    const payButton = document.querySelector('#pay-button')
-    payButton.addEventListener('click', displayAlert)
+    const payButton = document.querySelector('#pay-button');
+    payButton.addEventListener('click', displayAlert);
 }
 
 
