@@ -1,3 +1,4 @@
+import { displayAlert } from './alert.js';
 import { getCartItems, getCartTotal } from './cart.js';
 
 
@@ -37,5 +38,7 @@ function closeReceipt() {
     const receiptContainer = document.getElementById('receipt-container');
     receiptContainer.style.display = 'none';  // Oculta el contenedor del recibo
 }
+
+
 
 export { showReceipt, closeReceipt };
