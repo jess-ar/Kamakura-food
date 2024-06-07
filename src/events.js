@@ -2,6 +2,8 @@
 import { products } from '../assets/data/data.js';
 import { addToCart } from './cart.js';
 import { showReceipt, closeReceipt } from './receipt.js';
+import { displayAlert } from './alert.js';
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -60,3 +62,5 @@ closeReceiptButton.addEventListener('click', function () {
     closeReceipt(); // Cierra el recibo
 });
 
+const payButton = document.querySelector('#pay-button')
+payButton.addEventListener('click',displayAlert)
