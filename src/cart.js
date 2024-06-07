@@ -1,4 +1,4 @@
-
+import { displayCart, updateDisplayQuantity, updateDisplaySubtotal, updateDisplayTotal } from './cartUI.js';
 
 const cart = [];
 
@@ -8,7 +8,7 @@ function addToCart(product) {
         increaseQuantity(existingProduct);
     } else {
         product.quantity = 1;
-        product.subtotal= product.quantity* product.price
+        product.subtotal = product.quantity * product.price
         cart.push(product);
     }
     displayCart();
@@ -17,7 +17,6 @@ function addToCart(product) {
 function increaseQuantity(product) {
     product.quantity++;
     updateDisplayQuantity(product);
-  
 
 }
 
@@ -25,105 +24,36 @@ function decreaseQuantity(product) {
     if (product.quantity > 1) {
         product.quantity--;
         updateDisplayQuantity(product);
-   
-
     } else {
         removeProduct(product);
-     
     }
-    
-}
 
-function updateDisplayQuantity(product) {
-    const productElement = document.querySelector(`.quantity[data-product="${product.id}"]`);
-    if (productElement) {
-        productElement.innerHTML = product.quantity;
-    }
 }
-
 
 function removeProduct(product) {
     let index = cart.indexOf(product);
     cart.splice(index, 1);
+    cartTotal();
     displayCart();
 
 }
 
-function displayCart() {
-    const cartProducts = document.getElementById('cart-products');
-    cartProducts.innerHTML = '';  
-    cart.forEach(product => {
-        const cartContainer = document.createElement('div');
-        cartContainer.classList.add('cart-container');
-        cartContainer.innerHTML = `
-            <button class="close-button" id="close-${product.id}"><img src="./assets/img/close.svg" alt="close"></button>
-            <div class="text-container">
-                <h3>${product.name}</h3>
-                <h5 id ="price-${product.id}">${(product.subtotal).toFixed(2)} €</h5>
-            </div>
-            <div class="quantity-container">
-                <button id='increase-${product.id}'>+</button>
-                <p class="quantity" data-product="${product.id}">${product.quantity}</p>
-                <button id='decrease-${product.id}'>-</button>
-            </div>`;
-
-        const increaseButton = cartContainer.querySelector(`#increase-${product.id}`);
-        const decreaseButton = cartContainer.querySelector(`#decrease-${product.id}`);
-        const closeButton = cartContainer.querySelector(`#close-${product.id}`);
-
-        increaseButton.addEventListener('click', () =>{increaseQuantity(product)
-            updateSubtotal(product)
-            
-
-        });
-        decreaseButton.addEventListener('click', () => {decreaseQuantity(product)
-            updateSubtotal(product)
-       
-
-    });
-        closeButton.addEventListener('click', () => removeProduct(product));
-
-
-        cartProducts.appendChild(cartContainer);
-    });
-    cartTotal()
-}
-
-function updateSubtotal(product){
-    
-const subtotal = product.price* product.quantity
-const subtotalElement = document.getElementById(`price-${product.id}`)
-
-
-if (subtotalElement){
-subtotalElement.innerHTML = subtotal.toFixed(2)
-}
-product.subtotal= subtotal
-console.log(product.subtotal)
-cartTotal()
-} 
-
-function cartTotal(){
-const total  = cart.reduce((total, product) => total + product.subtotal, 0);
-
-const cartTotal = document.getElementById("cart-total");
-if (cartTotal){
-    cartTotal.innerHTML= total
-}
-console.log(cart)
-
+function updateSubtotal(product) {
+    const subtotal = product.price * product.quantity;
+    product.subtotal = subtotal;
+    updateDisplaySubtotal(subtotal, product);
+    cartTotal();
 }
 
 
-//SHOW-RECEIPT
-function getCartItems() { //con esto obtengo los articulos del carrito
-    return cart;
+function cartTotal() {
+    const total = cart.reduce((total, product) => total + product.subtotal, 0);
+    updateDisplayTotal(total);
+    return total;
 }
 
-function getCartTotal() { //con esto tengo el total del carrito
-    return cart.reduce((total, product) => total + product.price * product.quantity, 0);
-}
 
-export { addToCart, getCartItems, getCartTotal }; //AÑADIDO  getCartItems, getCartTotal
+
+export { addToCart, cart, cartTotal, decreaseQuantity, increaseQuantity, updateSubtotal, removeProduct };
 
 
