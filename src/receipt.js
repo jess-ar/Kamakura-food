@@ -39,8 +39,9 @@ function updateReceiptTotal(totalElement) {
 
 function clearReceipt(){
     let productElement = document.getElementById('receipt-product');
-    productElement.innerHTML = '';
-
+    if(productElement){
+        productElement.innerHTML = '';
+    }
 }
 
 

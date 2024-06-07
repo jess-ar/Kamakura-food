@@ -1,5 +1,4 @@
 .alert{
-    display: flex;
     flex-direction: column;
     text-align: center;
     justify-content: center;
@@ -9,7 +8,9 @@
     overflow: visible;
     gap: 20px;
 
-
+    &[open] {
+        display: flex;
+    }
 }
 @media screen and (max-width: 768px) {
     .alert{
