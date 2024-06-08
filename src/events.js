@@ -45,7 +45,7 @@ function setupAddToCartButtons() {
       const id = parseInt(e.target.getAttribute("id"), 10);
       const product = products.find((product) => product.id === id);
       addToCart(product);
-      displayCart(products);
+      displayCart();
     });
   });
 }

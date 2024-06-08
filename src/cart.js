@@ -11,7 +11,6 @@ function addToCart(product) {
         product.subtotal = product.quantity * product.price
         cart.push(product);
     }
-    displayCart();
 }
 
 function increaseQuantity(product) {
