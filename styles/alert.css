@@ -17,3 +17,7 @@
         width: 80%;
     }
 }
+
+.message-empty-cart{
+    color: red;
+}

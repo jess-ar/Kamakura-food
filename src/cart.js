@@ -52,8 +52,12 @@ function cartTotal() {
     return total;
 }
 
+function clearCart() {
+    cart.length = 0;
+}
 
 
-export { addToCart, cart, cartTotal, decreaseQuantity, increaseQuantity, updateSubtotal, removeProduct };
+
+export { addToCart, cart, cartTotal, decreaseQuantity, increaseQuantity, updateSubtotal, removeProduct, clearCart };
 
 
