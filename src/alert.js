@@ -18,10 +18,10 @@ function displayAlert() {
     const alert = document.createElement("dialog");
     alert.classList.add("alert");
     alert.innerHTML = ` 
-          <button class="close-button" id="close-alert"><img src="/public/img/close.svg" alt="close"></button>
+          <button class="close-button" id="close-alert"><img src="./public/img/close.svg" alt="close"></button>
           <h3>Gracias por tu Compra</h3>
           <p>¡Pedido realizado con éxito gracias por comprar en Kamakura Food!</p>
-          <img class="image-logo" src="/public/img/logo.svg" alt="restaurant logo">
+          <img class="image-logo" src="./public/img/logo.svg" alt="restaurant logo">
       `;
   
     container.appendChild(alert);

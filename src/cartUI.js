@@ -28,7 +28,7 @@ function createCartItemElement(product) {
     const cartContainer = document.createElement('div');
     cartContainer.classList.add('cart-container');
     cartContainer.innerHTML = `
-        <button class="close-button" id="close-${product.id}"><img src="/public/img/close.svg" alt="close"></button>
+        <button class="close-button" id="close-${product.id}"><img src="./public/img/close.svg" alt="close"></button>
         <div class="text-container">
             <h3>${product.name}</h3>
             <h5 id="price-${product.id}">${(product.subtotal).toFixed(2)} €</h5>
