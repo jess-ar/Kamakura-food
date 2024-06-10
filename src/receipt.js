@@ -9,7 +9,7 @@ function showReceipt() {
   if (cart.length === 0) {
     const messageElem = document.createElement("h3");
     messageElem.classList.add("receipt-message");
-    messageElem.innerHTML = `<h3>Aun no has escogido tu orden</h3>`;
+    messageElem.innerHTML = `<h3>Aún no has escogido tu orden</h3>`;
 
     receiptContainer.insertBefore(messageElem, totalElement);
   } else {
