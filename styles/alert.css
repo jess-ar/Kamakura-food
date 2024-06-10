@@ -1,0 +1,23 @@
+.alert{
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    border: none;
+    overflow: visible;
+    gap: 20px;
+
+    &[open] {
+        display: flex;
+    }
+}
+@media screen and (max-width: 768px) {
+    .alert{
+        width: 80%;
+    }
+}
+
+.message-empty-cart{
+    color: red;
+}
